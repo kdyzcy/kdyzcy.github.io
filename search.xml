@@ -1,51 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>MVC模式与三层架构模式</title>
-    <url>/post/ebbb47b7.html</url>
-    <content><![CDATA[<h1 id="MVC模式与三层架构模式"><a href="#MVC模式与三层架构模式" class="headerlink" title="MVC模式与三层架构模式"></a>MVC模式与三层架构模式</h1><h3 id="什么是MVC模式？"><a href="#什么是MVC模式？" class="headerlink" title="什么是MVC模式？"></a>什么是MVC模式？</h3><p>MVC模式，即<strong>Model模型</strong>、<strong>View视图</strong>、<strong>Controller</strong>*<strong>控制器</strong></p>
-<ul>
-<li><strong>View：</strong>视图，用于<strong>为用户提供使用界面</strong>以及<strong>与用户直接进行交互</strong></li>
-<li><strong>Model:</strong> 模型，用于承载数据，并<strong>对用户提交的请求进行处理。</strong>一共分为两类：<ul>
-<li><strong>数据承载Bean：</strong>指的也就是实体类（如：User类、Student类），专门用于处理承载业务数据。</li>
-<li><strong>业务处理Bean：</strong>则指的是service或dao对象，专门用于处理用户提交的请求（登录、注册）。</li>
-</ul>
-</li>
-<li><strong>Controller****：</strong>控制器，用于接收用户请求，并将请求跳转（转发、重定向）到对应的Model进行处理；Model处理完毕后，交接过返回给控制器，结果经过渲染后，再有控制器将结果返回给视图层。</li>
-</ul>
-<h3 id="MVC模式的工作流程"><a href="#MVC模式的工作流程" class="headerlink" title="MVC模式的工作流程"></a>MVC模式的工作流程</h3><ul>
-<li><p>用户通过View页面向服务端提出请求，可以是表单请求、超链接请求、AJAX请求等</p>
-</li>
-<li><p>服务端Controller控制器接收到请求后进行解析，找到对应的Model对用户请求进行处理</p>
-</li>
-<li><p>Model处理后，将处理结果再交给Controller</p>
-</li>
-<li><p>Controller在接到处理结果后，根据处理结果找到要作为客户端发回的响应View页面。页面经过渲染（数据填充）后，再发送给客户端。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/asynccode" alt="img"></p>
-</li>
-</ul>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/asynccode" alt="img"></p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/20230722213321.png"></p>
-<h3 id="什么是三层架构模式？"><a href="#什么是三层架构模式？" class="headerlink" title="什么是三层架构模式？"></a>什么是三层架构模式？</h3><p>三层架构指的是：<strong>视图层view（表现层）、服务层service（业务逻辑层）、持久层dao（数据访问层）</strong></p>
-<p><strong>视图层view（表现层）：</strong>用于<strong>显示数据</strong>和<strong>接收</strong>用户输入的<strong>数据</strong>，为用户提供一种<strong>交互式</strong>操作的界面展示。其<strong>主要作用概括为：界面展示、接收请求、分发请求。</strong></p>
-<p><strong>服务层service（业务逻辑层）：实现业务的主要逻辑，是系统架构中体现核心价值的部分。</strong>将一个业务中所有的操作封装成一个方法，同时保证方法中所有的数据库更新操作，即保证<strong>同时成功或同时失败</strong>。避免部分成功部分失败引起的数据混乱操作。将表现层与数据访问层联系起来，比如在嗲用访问数据的代码之前，先对数据进行处理和判断。</p>
-<p><strong>持久层dao：其主要的作用是负责数据库的访问，</strong>是对数据库的操作，而不是对数据的操作，比如：实现对数据表的增删查改操作，持久层的目的就是，完成对象数据和关系数据的转换。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/image-20230722213354116.png" alt="image-20230722213354116"></p>
-<blockquote>
-<p>一般来说：Controller与service、dao层之间为串行关系，即从Controller到service再到dao层</p>
-<p>Controller层通常包括参数校验、路由、将渲染的数据返回视图层三个部分</p>
-<p>service层主要用于控制事务，也就是将实现一个事务所需要的逻辑写在这里</p>
-<p>dao层也就是一堆增删查改，增删查改的接口，SQL控制等</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>JavaWeb</category>
-      </categories>
-      <tags>
-        <tag>MVC</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pycharm的破解安装以及配置matplotlib库与cv2库</title>
     <url>/post/337df376.html</url>
     <content><![CDATA[<h1 id="Pycharm的破解安装以及配置matplotlib库与cv2库"><a href="#Pycharm的破解安装以及配置matplotlib库与cv2库" class="headerlink" title="Pycharm的破解安装以及配置matplotlib库与cv2库"></a>Pycharm的破解安装以及配置matplotlib库与cv2库</h1><h2 id="2022全版本Pycharm的破解安装"><a href="#2022全版本Pycharm的破解安装" class="headerlink" title="2022全版本Pycharm的破解安装"></a>2022全版本Pycharm的破解安装</h2><p>PyCharm永久破解激活：</p>
@@ -119,6 +74,51 @@
       </tags>
   </entry>
   <entry>
+    <title>MVC模式与三层架构模式</title>
+    <url>/post/ebbb47b7.html</url>
+    <content><![CDATA[<h1 id="MVC模式与三层架构模式"><a href="#MVC模式与三层架构模式" class="headerlink" title="MVC模式与三层架构模式"></a>MVC模式与三层架构模式</h1><h3 id="什么是MVC模式？"><a href="#什么是MVC模式？" class="headerlink" title="什么是MVC模式？"></a>什么是MVC模式？</h3><p>MVC模式，即<strong>Model模型</strong>、<strong>View视图</strong>、<strong>Controller</strong>*<strong>控制器</strong></p>
+<ul>
+<li><strong>View：</strong>视图，用于<strong>为用户提供使用界面</strong>以及<strong>与用户直接进行交互</strong></li>
+<li><strong>Model:</strong> 模型，用于承载数据，并<strong>对用户提交的请求进行处理。</strong>一共分为两类：<ul>
+<li><strong>数据承载Bean：</strong>指的也就是实体类（如：User类、Student类），专门用于处理承载业务数据。</li>
+<li><strong>业务处理Bean：</strong>则指的是service或dao对象，专门用于处理用户提交的请求（登录、注册）。</li>
+</ul>
+</li>
+<li><strong>Controller****：</strong>控制器，用于接收用户请求，并将请求跳转（转发、重定向）到对应的Model进行处理；Model处理完毕后，交接过返回给控制器，结果经过渲染后，再有控制器将结果返回给视图层。</li>
+</ul>
+<h3 id="MVC模式的工作流程"><a href="#MVC模式的工作流程" class="headerlink" title="MVC模式的工作流程"></a>MVC模式的工作流程</h3><ul>
+<li><p>用户通过View页面向服务端提出请求，可以是表单请求、超链接请求、AJAX请求等</p>
+</li>
+<li><p>服务端Controller控制器接收到请求后进行解析，找到对应的Model对用户请求进行处理</p>
+</li>
+<li><p>Model处理后，将处理结果再交给Controller</p>
+</li>
+<li><p>Controller在接到处理结果后，根据处理结果找到要作为客户端发回的响应View页面。页面经过渲染（数据填充）后，再发送给客户端。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/asynccode" alt="img"></p>
+</li>
+</ul>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/asynccode" alt="img"></p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/20230722213321.png"></p>
+<h3 id="什么是三层架构模式？"><a href="#什么是三层架构模式？" class="headerlink" title="什么是三层架构模式？"></a>什么是三层架构模式？</h3><p>三层架构指的是：<strong>视图层view（表现层）、服务层service（业务逻辑层）、持久层dao（数据访问层）</strong></p>
+<p><strong>视图层view（表现层）：</strong>用于<strong>显示数据</strong>和<strong>接收</strong>用户输入的<strong>数据</strong>，为用户提供一种<strong>交互式</strong>操作的界面展示。其<strong>主要作用概括为：界面展示、接收请求、分发请求。</strong></p>
+<p><strong>服务层service（业务逻辑层）：实现业务的主要逻辑，是系统架构中体现核心价值的部分。</strong>将一个业务中所有的操作封装成一个方法，同时保证方法中所有的数据库更新操作，即保证<strong>同时成功或同时失败</strong>。避免部分成功部分失败引起的数据混乱操作。将表现层与数据访问层联系起来，比如在嗲用访问数据的代码之前，先对数据进行处理和判断。</p>
+<p><strong>持久层dao：其主要的作用是负责数据库的访问，</strong>是对数据库的操作，而不是对数据的操作，比如：实现对数据表的增删查改操作，持久层的目的就是，完成对象数据和关系数据的转换。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/0621music/image-20230722213354116.png" alt="image-20230722213354116"></p>
+<blockquote>
+<p>一般来说：Controller与service、dao层之间为串行关系，即从Controller到service再到dao层</p>
+<p>Controller层通常包括参数校验、路由、将渲染的数据返回视图层三个部分</p>
+<p>service层主要用于控制事务，也就是将实现一个事务所需要的逻辑写在这里</p>
+<p>dao层也就是一堆增删查改，增删查改的接口，SQL控制等</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>JavaWeb</category>
+      </categories>
+      <tags>
+        <tag>MVC</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SSM项目启动失败</title>
     <url>/post/f3c48358.html</url>
     <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>通过配置类的方式编写一个基于SSM框架的一个小项目时，在配置类反复检查没有问题的情况下，启动Tomcat服务器时报错，启动失败。</p>
@@ -174,24 +174,6 @@
       </tags>
   </entry>
   <entry>
-    <title>来个开篇词吧！</title>
-    <url>/post/b388a4c.html</url>
-    <content><![CDATA[<h1 id="有梦则刚，素履以往"><a href="#有梦则刚，素履以往" class="headerlink" title="有梦则刚，素履以往"></a>有梦则刚，素履以往</h1><p>于高山之巅，方见大河奔涌；于群峰之上，更觉长风浩荡。芳华待灼,砥砺深耕,奋楫笃行,履践致远。来即如露，去时如电，留不住的始终是那刹那芳华；凡益之道，与时偕行；坚定心中理想，与对未来的不懈追求，有梦则刚，素履以往；满怀着对未来的期望，迎接未知的挑战，看平凡闪耀出奇迹，人生最璀璨的瞬间莫过于那撕破深夜的火花，人生最幸福的事情莫过于不断的挑战自己，完善自己。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/65f2fcdb11784723b71c528e92d5542c.jpg" alt="65f2fcdb11784723b71c528e92d5542c"></p>
-<p>长路漫漫，晴雨交加，但若是心怀热爱，即使岁月荒芜，亦能奔山赴海，静待一树花开，热爱是一个人内心最深沉持久的力量，它不是心血来潮的三分热度，也不会因为时代变迁而稍纵即逝。相反，在历经时光考验与洗礼后，依然能够让人从中不断汲取营养；时间的长河奔腾不息，有静水流深，也有惊涛骇浪，直面困难不放弃，跌倒后勇敢站起来，抖擞精神再出发，是我们身上所独有的少年之气，是历经千帆举重若轻的沉淀，也是乐观淡然笑对生活的豁达。</p>
-<p>我们需要不断的去战胜自己，真正的优秀不是别人逼出来的，而是自己和自己死磕，不断地进行自我完善。比大地辽阔的是海洋，比海洋更浩瀚的是九天之上的星辰大海，凡益之道，与时偕行；逐梦星海，未来等你来！向未来！海到无边天作岸，山登绝顶我为峰。向未来! 两道风景相送，彼岸繁花相迎。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/12.jpg" alt="12"></p>
-<p>乘风好去，长空万里；眼底山河，胸中事业；树蕙餐英，上下求索；今日长缨在手，且把利剑破长空。穿花觅雨，直入云霄；风雨同舟，万变不从；凡心所向，素履以往；胸中有丘壑，立马振山河。明日之我，愿付苍流； 生如逆旅，无弗远届；聚沙成塔，滚石上山；一片冰心在玉壶，归来依旧是少年。矢志不渝，一苇以航；真抓实干，以启山林；你若前来，粉蝶盛开；有志何妨梦摘星，敢挽桑弓射玉衡。</p>
-<p>诸君：“三月桃花，四月欢唱；我自倾怀，且君随意；有志摘星，未来等你！<strong>我们静待花开，愿君如梦所期，不负春光不负己。”</strong></p>
-]]></content>
-      <categories>
-        <category>随记</category>
-      </categories>
-      <tags>
-        <tag>生活随记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</title>
     <url>/post/e5b65d47.html</url>
     <content><![CDATA[<h1 id="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"><a href="#对于数据库范式（1NF，2NF，3NF，BCNF）的理解" class="headerlink" title="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"></a>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</h1><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
@@ -230,6 +212,24 @@
       </categories>
       <tags>
         <tag>数据库理论</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>来个开篇词吧！</title>
+    <url>/post/b388a4c.html</url>
+    <content><![CDATA[<h1 id="有梦则刚，素履以往"><a href="#有梦则刚，素履以往" class="headerlink" title="有梦则刚，素履以往"></a>有梦则刚，素履以往</h1><p>于高山之巅，方见大河奔涌；于群峰之上，更觉长风浩荡。芳华待灼,砥砺深耕,奋楫笃行,履践致远。来即如露，去时如电，留不住的始终是那刹那芳华；凡益之道，与时偕行；坚定心中理想，与对未来的不懈追求，有梦则刚，素履以往；满怀着对未来的期望，迎接未知的挑战，看平凡闪耀出奇迹，人生最璀璨的瞬间莫过于那撕破深夜的火花，人生最幸福的事情莫过于不断的挑战自己，完善自己。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/65f2fcdb11784723b71c528e92d5542c.jpg" alt="65f2fcdb11784723b71c528e92d5542c"></p>
+<p>长路漫漫，晴雨交加，但若是心怀热爱，即使岁月荒芜，亦能奔山赴海，静待一树花开，热爱是一个人内心最深沉持久的力量，它不是心血来潮的三分热度，也不会因为时代变迁而稍纵即逝。相反，在历经时光考验与洗礼后，依然能够让人从中不断汲取营养；时间的长河奔腾不息，有静水流深，也有惊涛骇浪，直面困难不放弃，跌倒后勇敢站起来，抖擞精神再出发，是我们身上所独有的少年之气，是历经千帆举重若轻的沉淀，也是乐观淡然笑对生活的豁达。</p>
+<p>我们需要不断的去战胜自己，真正的优秀不是别人逼出来的，而是自己和自己死磕，不断地进行自我完善。比大地辽阔的是海洋，比海洋更浩瀚的是九天之上的星辰大海，凡益之道，与时偕行；逐梦星海，未来等你来！向未来！海到无边天作岸，山登绝顶我为峰。向未来! 两道风景相送，彼岸繁花相迎。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/12.jpg" alt="12"></p>
+<p>乘风好去，长空万里；眼底山河，胸中事业；树蕙餐英，上下求索；今日长缨在手，且把利剑破长空。穿花觅雨，直入云霄；风雨同舟，万变不从；凡心所向，素履以往；胸中有丘壑，立马振山河。明日之我，愿付苍流； 生如逆旅，无弗远届；聚沙成塔，滚石上山；一片冰心在玉壶，归来依旧是少年。矢志不渝，一苇以航；真抓实干，以启山林；你若前来，粉蝶盛开；有志何妨梦摘星，敢挽桑弓射玉衡。</p>
+<p>诸君：“三月桃花，四月欢唱；我自倾怀，且君随意；有志摘星，未来等你！<strong>我们静待花开，愿君如梦所期，不负春光不负己。”</strong></p>
+]]></content>
+      <categories>
+        <category>随记</category>
+      </categories>
+      <tags>
+        <tag>生活随记</tag>
       </tags>
   </entry>
   <entry>
