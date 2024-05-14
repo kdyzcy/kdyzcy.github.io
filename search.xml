@@ -134,6 +134,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Lambda表达式的基本使用</title>
+    <url>/post/79fbda77.html</url>
+    <content><![CDATA[<h1 id="语法进一步精简规则"><a href="#语法进一步精简规则" class="headerlink" title="语法进一步精简规则"></a>语法进一步精简规则</h1><p>在原本的语法基础上，Lambda表达式已经相对来说比较精简了，但在以下的应用场景中，我们就可以对Lambda表达式的语法进行精简，场景如下：</p>
+<ol>
+<li>形参类型可以省略，如果需要省略，则每个形参的类型都要省略。</li>
+<li>如果形参列表中只存在一个形参，那么形参类型和小括号都可以省略。</li>
+<li>如果方法体当中只有一行语句，那么方法体的大括号也可以省略。</li>
+<li>如果方法体中只有一条return语句，那么大括号可以省略，且必须去掉return关键字。</li>
+</ol>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><p>结合更为精简的语法规则对Lambda表达式进行运用</p>
+<h2 id="无返回值函数式接口"><a href="#无返回值函数式接口" class="headerlink" title="无返回值函数式接口"></a>无返回值函数式接口</h2><h3 id="情况一：无返回值无参数"><a href="#情况一：无返回值无参数" class="headerlink" title="情况一：无返回值无参数"></a>情况一：无返回值无参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">NoParameterNoReturn</span> <span class="variable">obj1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NoParameterNoReturn</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;无参无返回值&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj1.test();</span><br><span class="line"><span class="type">NoParameterNoReturn</span> <span class="variable">obj2</span> <span class="operator">=</span> () -&gt; System.out.println(<span class="string">&quot;无参无返回值&quot;</span>);</span><br><span class="line">obj2.test();</span><br></pre></td></tr></table></figure>
+
+<h3 id="情况二：无返回值一个参数"><a href="#情况二：无返回值一个参数" class="headerlink" title="情况二：无返回值一个参数"></a><strong>情况二：无返回值一个参数</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">OneParameterNoReturn</span> <span class="variable">obj21</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OneParameterNoReturn</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(<span class="type">int</span> num)</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;无返回值一个参数 --&gt; &quot;</span> + num);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj21.test(<span class="number">10</span>);</span><br><span class="line"><span class="type">OneParameterNoReturn</span> <span class="variable">obj22</span> <span class="operator">=</span> num -&gt; System.out.println(<span class="string">&quot;无返回值一个参数 --&gt; &quot;</span> + num);</span><br><span class="line">obj22.test(<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="情况三：无返回值多个参数"><a href="#情况三：无返回值多个参数" class="headerlink" title="情况三：无返回值多个参数"></a><strong>情况三：无返回值多个参数</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">MoreParameterNoReturn</span> <span class="variable">obj31</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MoreParameterNoReturn</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">(String str1, String str2)</span> &#123;</span><br><span class="line">        System.out.println(str1 + <span class="string">&quot; : &quot;</span> + str2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">obj31.test(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br><span class="line"><span class="type">MoreParameterNoReturn</span> <span class="variable">obj32</span> <span class="operator">=</span> (str1, str2) -&gt; System.out.println(str1 + <span class="string">&quot; : &quot;</span> + str2);</span><br><span class="line">obj32.test(<span class="string">&quot;hello&quot;</span>, <span class="string">&quot;world&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="有返回值函数接口"><a href="#有返回值函数接口" class="headerlink" title="有返回值函数接口"></a>有返回值函数接口</h2><h3 id="情况一：有返回值无参数"><a href="#情况一：有返回值无参数" class="headerlink" title="情况一：有返回值无参数"></a>情况一：有返回值无参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">NoParameterHasReturn</span> <span class="variable">obj41</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">NoParameterHasReturn</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">520</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="type">NoParameterHasReturn</span> <span class="variable">obj42</span> <span class="operator">=</span> () -&gt; <span class="number">520</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="情况二：有返回值一个参数"><a href="#情况二：有返回值一个参数" class="headerlink" title="情况二：有返回值一个参数"></a><strong>情况二：有返回值一个参数</strong></h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"> <span class="type">OneParameterHasReturn</span> <span class="variable">obj51</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OneParameterHasReturn</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">test</span><span class="params">(<span class="type">double</span> num)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;传入的小数为：&quot;</span> + num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(obj51.test(<span class="number">520.0</span>));</span><br><span class="line"><span class="type">OneParameterHasReturn</span> <span class="variable">obj52</span> <span class="operator">=</span> num -&gt; <span class="string">&quot;传入的小数为：&quot;</span> + num;</span><br><span class="line">System.out.println(obj52.test(<span class="number">520.0</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="情况三：有返回值多个参数"><a href="#情况三：有返回值多个参数" class="headerlink" title="情况三：有返回值多个参数"></a>情况三：有返回值多个参数</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">MoreParameterHasReturn</span> <span class="variable">obj61</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MoreParameterHasReturn</span>() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">test</span><span class="params">(<span class="type">int</span> num1, <span class="type">int</span> num2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;运算的结果为：&quot;</span> + (num1 + num2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(obj61.test(<span class="number">10</span>, <span class="number">20</span>));</span><br><span class="line"><span class="type">MoreParameterHasReturn</span> <span class="variable">obj62</span> <span class="operator">=</span> (num1, num2) -&gt; <span class="string">&quot;运算的结果为：&quot;</span> + (num1 + num2);</span><br><span class="line">System.out.println(obj62.test(<span class="number">10</span>, <span class="number">20</span>));</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Lambda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MVC模式与三层架构模式</title>
     <url>/post/ebbb47b7.html</url>
     <content><![CDATA[<h1 id="MVC模式与三层架构模式"><a href="#MVC模式与三层架构模式" class="headerlink" title="MVC模式与三层架构模式"></a>MVC模式与三层架构模式</h1><h3 id="什么是MVC模式？"><a href="#什么是MVC模式？" class="headerlink" title="什么是MVC模式？"></a>什么是MVC模式？</h3><p>MVC模式，即<strong>Model模型</strong>、<strong>View视图</strong>、<strong>Controller</strong>*<strong>控制器</strong></p>
@@ -252,33 +282,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vue3实现省市联动表项</title>
-    <url>/post/6cf485f1.html</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>所用技术栈：vue3+ElementPlus</p>
-<p>需求：要求在对用户信息中的籍贯信息录入时，有一个省市联动的表单可供选择</p>
-<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>参考文档：<a href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
-<p>下载对应插件：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install element-china-area-data -S</span><br></pre></td></tr></table></figure>
-
-<p>导入库：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  provinceAndCityData,</span><br><span class="line">  pcTextArr,</span><br><span class="line">  regionData,</span><br><span class="line">  pcaTextArr,</span><br><span class="line">  codeToText,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>vue3页面代码的实现：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">  size=&quot;large&quot;</span><br><span class="line">  :options=&quot;pcTextArr&quot;</span><br><span class="line">  v-model=&quot;sd&quot;</span><br><span class="line">  @change=&quot;handleChange&quot;</span><br><span class="line">  &gt;</span><br><span class="line">&lt;/el-cascader&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sd = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="comment">//这里的authorMsg为存储最后选择结果的字段</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleChange</span>(<span class="params"></span>)&#123;</span><br><span class="line">  authorMsg.<span class="property">city</span> = sd.<span class="property">value</span>[<span class="number">0</span>]+sd.<span class="property">value</span>[<span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212756479.png" alt="image-20240511212756479"></p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212816165.png" alt="image-20240511212816165"></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vue3</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</title>
     <url>/post/e5b65d47.html</url>
     <content><![CDATA[<h1 id="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"><a href="#对于数据库范式（1NF，2NF，3NF，BCNF）的理解" class="headerlink" title="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"></a>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</h1><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
@@ -317,6 +320,33 @@
       </categories>
       <tags>
         <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue3实现省市联动表项</title>
+    <url>/post/6cf485f1.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>所用技术栈：vue3+ElementPlus</p>
+<p>需求：要求在对用户信息中的籍贯信息录入时，有一个省市联动的表单可供选择</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>参考文档：<a href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
+<p>下载对应插件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install element-china-area-data -S</span><br></pre></td></tr></table></figure>
+
+<p>导入库：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  provinceAndCityData,</span><br><span class="line">  pcTextArr,</span><br><span class="line">  regionData,</span><br><span class="line">  pcaTextArr,</span><br><span class="line">  codeToText,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>vue3页面代码的实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">  size=&quot;large&quot;</span><br><span class="line">  :options=&quot;pcTextArr&quot;</span><br><span class="line">  v-model=&quot;sd&quot;</span><br><span class="line">  @change=&quot;handleChange&quot;</span><br><span class="line">  &gt;</span><br><span class="line">&lt;/el-cascader&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sd = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="comment">//这里的authorMsg为存储最后选择结果的字段</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleChange</span>(<span class="params"></span>)&#123;</span><br><span class="line">  authorMsg.<span class="property">city</span> = sd.<span class="property">value</span>[<span class="number">0</span>]+sd.<span class="property">value</span>[<span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212756479.png" alt="image-20240511212756479"></p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212816165.png" alt="image-20240511212816165"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue3</tag>
       </tags>
   </entry>
   <entry>
