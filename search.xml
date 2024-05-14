@@ -1,66 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Lambda表达式介绍</title>
-    <url>/post/c3c20d9.html</url>
-    <content><![CDATA[<h2 id="函数式编程思想"><a href="#函数式编程思想" class="headerlink" title="函数式编程思想"></a>函数式编程思想</h2><p>Java从诞生之日起就一直倡导“一切皆对象”，在Java语言中面向对象（OOP）编程就是一切，但是随着Python和Scala等语言的崛起和新技术的挑战，Java也不得不做出调整以便支持更加广泛的技术要求，即Java语言不但支持OOP还支持OOF（面向函数编程）。</p>
-<p>JDK1.8引入Lambda表达式之后，Java语言也开始支持函数式编程，但是Lambda表达式不是Java语言最早使用的，目前C++、C#、Python、Scala等语言都支持Lambda表示。</p>
-<p>Lambda表达式是JDK1.8的一个新特性，可以取代大部分的匿名内部类，以便写出更优雅的Java代码，尤其在集合的遍历和其他集合操作中，可以极大地优化代码结构。</p>
-<ul>
-<li><p>面向对象的思想 </p>
-</li>
-<li><ul>
-<li>做一件事情，找一个能解决这个事情的对象，然后调用对象的方法，最终完成事情。</li>
-</ul>
-</li>
-<li><p>函数式编程思想 </p>
-</li>
-<li><ul>
-<li>只要能获得结果，谁去做的，怎么做的都不重要，重视的是结果，不重视实现过程。</li>
-</ul>
-</li>
-</ul>
-<p>JDK1.8中的Lambda表达式就是一个函数式接口的实例，这就是Lambda表达式和函数式接口的关系。也就是说，<strong>只要一个对象是函数式接口的实例，那么该对象就可以使用Lambda表达式来表示</strong>。</p>
-<h2 id="对于函数式接口的理解"><a href="#对于函数式接口的理解" class="headerlink" title="对于函数式接口的理解"></a>对于函数式接口的理解</h2><p>能够使用Lambda表达式的一个很重要的依据便是必须有相应的函数式接口，所谓的函数式接口，指的就是“一个接口中有且只能有一个抽象方法”。也就是说，<strong>如果一个接口只有一个抽象方法，那么该接口就是一个函数式接口。</strong></p>
-<p>如果我们在接口上声明了 @FunctionalInterface 注解，那么编译器就会按照函数式接口的定义来要求该接口，也就是该接口中有且只能定义一个抽象方法，如果该接口中定义了多个或0个抽象方法，则程序编译时就会报错。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="comment">// 在函数式接口中，我们有且只能定义一个抽象方法</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">showFly</span><span class="params">()</span>;</span><br><span class="line">    <span class="comment">// 但是，可以定义任意多个默认方法或静态方法</span></span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;JDK1.8之后，接口还可以定义默认方法和静态方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>另外，从某种意义上来说，只要你保证你的接口中有且只有一个抽象方法，则接口中没有使用 @FunctionalInterface 注解来标注，那么该接口也依旧属于函数式接口。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 没有使用<span class="doctag">@FunctionalInterface</span>标注的接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">showFly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 使用lambda表示来表示Flyable接口的实例</span></span><br><span class="line">        <span class="type">Flyable</span> <span class="variable">flyable</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;小鸟自由自在的飞翔&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 调用Flyable接口的实例的showFly()方法</span></span><br><span class="line">        flyable.showFly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Lambda表达式与匿名内部类的区别：</strong></p>
-<ul>
-<li><p>所需类型不同：</p>
-</li>
-<li><ul>
-<li>匿名内部类：可以是接口，抽象类，具体类</li>
-<li>Lambda表达式：<strong>只能是接口</strong></li>
-</ul>
-</li>
-<li><p>使用限制不同：</p>
-</li>
-<li><ul>
-<li>如果接口中<strong>有且仅有一个抽象方法</strong>，可以使用Lambda表达式，也可以使用匿名内部类。</li>
-<li>如果接口中有多个抽象方法，则就只能使用匿名内部类，而不能使用Lambda表达式。</li>
-</ul>
-</li>
-<li><p>实现原理不同：</p>
-</li>
-<li><ul>
-<li>匿名内部类：编译之后，会生成一个单独的.class字节码文件。</li>
-<li>Lambda表达式：编译之后，没有生成一个单独的.class字节码文件。</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Lambda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pycharm的破解安装以及配置matplotlib库与cv2库</title>
     <url>/post/337df376.html</url>
     <content><![CDATA[<h1 id="Pycharm的破解安装以及配置matplotlib库与cv2库"><a href="#Pycharm的破解安装以及配置matplotlib库与cv2库" class="headerlink" title="Pycharm的破解安装以及配置matplotlib库与cv2库"></a>Pycharm的破解安装以及配置matplotlib库与cv2库</h1><h2 id="2022全版本Pycharm的破解安装"><a href="#2022全版本Pycharm的破解安装" class="headerlink" title="2022全版本Pycharm的破解安装"></a>2022全版本Pycharm的破解安装</h2><p>PyCharm永久破解激活：</p>
@@ -206,6 +146,66 @@
       </categories>
       <tags>
         <tag>MVC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lambda表达式介绍</title>
+    <url>/post/c3c20d9.html</url>
+    <content><![CDATA[<h2 id="函数式编程思想"><a href="#函数式编程思想" class="headerlink" title="函数式编程思想"></a>函数式编程思想</h2><p>Java从诞生之日起就一直倡导“一切皆对象”，在Java语言中面向对象（OOP）编程就是一切，但是随着Python和Scala等语言的崛起和新技术的挑战，Java也不得不做出调整以便支持更加广泛的技术要求，即Java语言不但支持OOP还支持OOF（面向函数编程）。</p>
+<p>JDK1.8引入Lambda表达式之后，Java语言也开始支持函数式编程，但是Lambda表达式不是Java语言最早使用的，目前C++、C#、Python、Scala等语言都支持Lambda表示。</p>
+<p>Lambda表达式是JDK1.8的一个新特性，可以取代大部分的匿名内部类，以便写出更优雅的Java代码，尤其在集合的遍历和其他集合操作中，可以极大地优化代码结构。</p>
+<ul>
+<li><p>面向对象的思想 </p>
+</li>
+<li><ul>
+<li>做一件事情，找一个能解决这个事情的对象，然后调用对象的方法，最终完成事情。</li>
+</ul>
+</li>
+<li><p>函数式编程思想 </p>
+</li>
+<li><ul>
+<li>只要能获得结果，谁去做的，怎么做的都不重要，重视的是结果，不重视实现过程。</li>
+</ul>
+</li>
+</ul>
+<p>JDK1.8中的Lambda表达式就是一个函数式接口的实例，这就是Lambda表达式和函数式接口的关系。也就是说，<strong>只要一个对象是函数式接口的实例，那么该对象就可以使用Lambda表达式来表示</strong>。</p>
+<h2 id="对于函数式接口的理解"><a href="#对于函数式接口的理解" class="headerlink" title="对于函数式接口的理解"></a>对于函数式接口的理解</h2><p>能够使用Lambda表达式的一个很重要的依据便是必须有相应的函数式接口，所谓的函数式接口，指的就是“一个接口中有且只能有一个抽象方法”。也就是说，<strong>如果一个接口只有一个抽象方法，那么该接口就是一个函数式接口。</strong></p>
+<p>如果我们在接口上声明了 @FunctionalInterface 注解，那么编译器就会按照函数式接口的定义来要求该接口，也就是该接口中有且只能定义一个抽象方法，如果该接口中定义了多个或0个抽象方法，则程序编译时就会报错。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="comment">// 在函数式接口中，我们有且只能定义一个抽象方法</span></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">showFly</span><span class="params">()</span>;</span><br><span class="line">    <span class="comment">// 但是，可以定义任意多个默认方法或静态方法</span></span><br><span class="line">    <span class="keyword">default</span> <span class="keyword">void</span> <span class="title function_">show</span><span class="params">()</span> &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;JDK1.8之后，接口还可以定义默认方法和静态方法&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另外，从某种意义上来说，只要你保证你的接口中有且只有一个抽象方法，则接口中没有使用 @FunctionalInterface 注解来标注，那么该接口也依旧属于函数式接口。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 没有使用<span class="doctag">@FunctionalInterface</span>标注的接口</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Flyable</span> &#123;</span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">showFly</span><span class="params">()</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 测试类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 使用lambda表示来表示Flyable接口的实例</span></span><br><span class="line">        <span class="type">Flyable</span> <span class="variable">flyable</span> <span class="operator">=</span> () -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;小鸟自由自在的飞翔&quot;</span>);</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="comment">// 调用Flyable接口的实例的showFly()方法</span></span><br><span class="line">        flyable.showFly();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Lambda表达式与匿名内部类的区别：</strong></p>
+<ul>
+<li><p>所需类型不同：</p>
+</li>
+<li><ul>
+<li>匿名内部类：可以是接口，抽象类，具体类</li>
+<li>Lambda表达式：<strong>只能是接口</strong></li>
+</ul>
+</li>
+<li><p>使用限制不同：</p>
+</li>
+<li><ul>
+<li>如果接口中<strong>有且仅有一个抽象方法</strong>，可以使用Lambda表达式，也可以使用匿名内部类。</li>
+<li>如果接口中有多个抽象方法，则就只能使用匿名内部类，而不能使用Lambda表达式。</li>
+</ul>
+</li>
+<li><p>实现原理不同：</p>
+</li>
+<li><ul>
+<li>匿名内部类：编译之后，会生成一个单独的.class字节码文件。</li>
+<li>Lambda表达式：编译之后，没有生成一个单独的.class字节码文件。</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
