@@ -1,79 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Pycharm的破解安装以及配置matplotlib库与cv2库</title>
-    <url>/post/337df376.html</url>
-    <content><![CDATA[<h1 id="Pycharm的破解安装以及配置matplotlib库与cv2库"><a href="#Pycharm的破解安装以及配置matplotlib库与cv2库" class="headerlink" title="Pycharm的破解安装以及配置matplotlib库与cv2库"></a>Pycharm的破解安装以及配置matplotlib库与cv2库</h1><h2 id="2022全版本Pycharm的破解安装"><a href="#2022全版本Pycharm的破解安装" class="headerlink" title="2022全版本Pycharm的破解安装"></a>2022全版本Pycharm的破解安装</h2><p>PyCharm永久破解激活：</p>
-<p>破解工具网盘链接：<a href="https://pan.baidu.com/s/1zBOWQrNRfgvvsgpHk_uBXg?pwd=ihwa">https://pan.baidu.com/s/1zBOWQrNRfgvvsgpHk_uBXg?pwd=ihwa</a> </p>
-<p>对应破解工具的PyCharm激活码：<a href="https://chenjunan.top/img/activate/pycharm-new.txt">https://chenjunan.top/img/activate/pycharm-new.txt</a></p>
-<p>安装教程：<a href="https://chenjunan.top/detail/Detail?id=34">https://chenjunan.top/detail/Detail?id=34</a></p>
-<p>具体安装过程见安装教程连接</p>
-<p>安装需要注意的几点：</p>
-<p>解压后的破解工具以及pycharm的文件夹均不要移动或删除，否则会导致破解失效</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
-<h2 id="Pycharm配置Python环境"><a href="#Pycharm配置Python环境" class="headerlink" title="Pycharm配置Python环境"></a>Pycharm配置Python环境</h2><p>刚刚下载安装好的Pycharm是没有Python环境的</p>
-<p>点击主界面上file-&gt;Settings</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205155301.png" alt="image-20230425205155301"></p>
-<p>选择Project下的Python Interpreter，没有安装过Python环境的点击Add  Interpreter下选择Add local  Interpreter。我这里是之前就已经安装好了的</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205303570.png" alt="image-20230425205303570"></p>
-<p>没有安装过Python环境的是这个样子的：</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205335006.png" alt="image-20230425205335006"></p>
-<p>弹出界面</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205358464.png" alt="image-20230425205358464"></p>
-<p>选择安装路径，点击三角形符号可选择安装版本</p>
-<p>这样pycharm的python环境就安装好了</p>
-<h2 id="matplotlib库的安装"><a href="#matplotlib库的安装" class="headerlink" title="matplotlib库的安装"></a>matplotlib库的安装</h2><p>在安装matplotlib库与cv2库之前，先配置pip,方便后续安装。</p>
-<p>在电脑中找到刚才安装的python位置</p>
-<p>一般的位置基本不会变，都差不多，复制下图中pip.exe的路径</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205431066.png" alt="image-20230425205431066"></p>
-<p>打开电脑环境属性，配置环境</p>
-<p>选择path,点击编辑</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205451992.png" alt="image-20230425205451992"></p>
-<p>点击新建，将刚才复制的路径粘贴到这里</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205512195.png" alt="image-20230425205512195"></p>
-<p>win+R,输入cmd打开控制台</p>
-<p>输入命令：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install matplotlib </span><br></pre></td></tr></table></figure>
-
-<p>等待安装完成即可;</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205557819.png" alt="image-20230425205557819"></p>
-<p>安装完成:</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205620023.png" alt="image-20230425205620023"></p>
-<p>测试代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.plot([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">plt.ylabel(<span class="string">&#x27;numbers&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>运行结果;</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205645892.png" alt="image-20230425205645892"></p>
-<p>如果出现报错，没有成功运行：</p>
-<p>回到之前安装Python的那个页面</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205708517.png" alt="image-20230425205708517"></p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205720920.png" alt="image-20230425205720920"></p>
-<p>虽然我也不知道为什么，但改为3.3.0的版本就真的能运行，其他的版本没有去试过，不知道可不可以</p>
-<p>改版本的过程：</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205740654.png" alt="image-20230425205740654"></p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205753755.png" alt="image-20230425205753755"></p>
-<p>点击Install Package 等待安装成功，pycharm弹出提示</p>
-<p>重启pycharm</p>
-<p>这样就能正常运行使用matplotlib库</p>
-<p>附上官网连接： <a href="https://matplotlib.org/stable/users/getting_started/index.html#installation-quick-start">https://matplotlib.org/stable/users/getting_started/index.html#installation-quick-start</a> </p>
-<h2 id="cv2库的安装"><a href="#cv2库的安装" class="headerlink" title="cv2库的安装"></a>cv2库的安装</h2><p>win+R,输入cmd打开控制台</p>
-<p>输入命令</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install opencv-python  </span><br></pre></td></tr></table></figure>
-
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205811569.png" alt="image-20230425205811569"></p>
-<p>则安装成功</p>
-<p>重启pycharm</p>
-<p>运行得</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205828595.png" alt="image-20230425205828595"></p>
-]]></content>
-      <categories>
-        <category>百宝箱</category>
-      </categories>
-      <tags>
-        <tag>软件安装与配置</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lambda表达式介绍</title>
     <url>/post/c3c20d9.html</url>
     <content><![CDATA[<h2 id="函数式编程思想"><a href="#函数式编程思想" class="headerlink" title="函数式编程思想"></a>函数式编程思想</h2><p>Java从诞生之日起就一直倡导“一切皆对象”，在Java语言中面向对象（OOP）编程就是一切，但是随着Python和Scala等语言的崛起和新技术的挑战，Java也不得不做出调整以便支持更加广泛的技术要求，即Java语言不但支持OOP还支持OOF（面向函数编程）。</p>
@@ -164,6 +91,79 @@
       </tags>
   </entry>
   <entry>
+    <title>Pycharm的破解安装以及配置matplotlib库与cv2库</title>
+    <url>/post/337df376.html</url>
+    <content><![CDATA[<h1 id="Pycharm的破解安装以及配置matplotlib库与cv2库"><a href="#Pycharm的破解安装以及配置matplotlib库与cv2库" class="headerlink" title="Pycharm的破解安装以及配置matplotlib库与cv2库"></a>Pycharm的破解安装以及配置matplotlib库与cv2库</h1><h2 id="2022全版本Pycharm的破解安装"><a href="#2022全版本Pycharm的破解安装" class="headerlink" title="2022全版本Pycharm的破解安装"></a>2022全版本Pycharm的破解安装</h2><p>PyCharm永久破解激活：</p>
+<p>破解工具网盘链接：<a href="https://pan.baidu.com/s/1zBOWQrNRfgvvsgpHk_uBXg?pwd=ihwa">https://pan.baidu.com/s/1zBOWQrNRfgvvsgpHk_uBXg?pwd=ihwa</a> </p>
+<p>对应破解工具的PyCharm激活码：<a href="https://chenjunan.top/img/activate/pycharm-new.txt">https://chenjunan.top/img/activate/pycharm-new.txt</a></p>
+<p>安装教程：<a href="https://chenjunan.top/detail/Detail?id=34">https://chenjunan.top/detail/Detail?id=34</a></p>
+<p>具体安装过程见安装教程连接</p>
+<p>安装需要注意的几点：</p>
+<p>解压后的破解工具以及pycharm的文件夹均不要移动或删除，否则会导致破解失效</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
+<h2 id="Pycharm配置Python环境"><a href="#Pycharm配置Python环境" class="headerlink" title="Pycharm配置Python环境"></a>Pycharm配置Python环境</h2><p>刚刚下载安装好的Pycharm是没有Python环境的</p>
+<p>点击主界面上file-&gt;Settings</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205155301.png" alt="image-20230425205155301"></p>
+<p>选择Project下的Python Interpreter，没有安装过Python环境的点击Add  Interpreter下选择Add local  Interpreter。我这里是之前就已经安装好了的</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205303570.png" alt="image-20230425205303570"></p>
+<p>没有安装过Python环境的是这个样子的：</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205335006.png" alt="image-20230425205335006"></p>
+<p>弹出界面</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205358464.png" alt="image-20230425205358464"></p>
+<p>选择安装路径，点击三角形符号可选择安装版本</p>
+<p>这样pycharm的python环境就安装好了</p>
+<h2 id="matplotlib库的安装"><a href="#matplotlib库的安装" class="headerlink" title="matplotlib库的安装"></a>matplotlib库的安装</h2><p>在安装matplotlib库与cv2库之前，先配置pip,方便后续安装。</p>
+<p>在电脑中找到刚才安装的python位置</p>
+<p>一般的位置基本不会变，都差不多，复制下图中pip.exe的路径</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205431066.png" alt="image-20230425205431066"></p>
+<p>打开电脑环境属性，配置环境</p>
+<p>选择path,点击编辑</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205451992.png" alt="image-20230425205451992"></p>
+<p>点击新建，将刚才复制的路径粘贴到这里</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205512195.png" alt="image-20230425205512195"></p>
+<p>win+R,输入cmd打开控制台</p>
+<p>输入命令：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install matplotlib </span><br></pre></td></tr></table></figure>
+
+<p>等待安装完成即可;</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205557819.png" alt="image-20230425205557819"></p>
+<p>安装完成:</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205620023.png" alt="image-20230425205620023"></p>
+<p>测试代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.plot([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>])</span><br><span class="line">plt.ylabel(<span class="string">&#x27;numbers&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>运行结果;</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205645892.png" alt="image-20230425205645892"></p>
+<p>如果出现报错，没有成功运行：</p>
+<p>回到之前安装Python的那个页面</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205708517.png" alt="image-20230425205708517"></p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205720920.png" alt="image-20230425205720920"></p>
+<p>虽然我也不知道为什么，但改为3.3.0的版本就真的能运行，其他的版本没有去试过，不知道可不可以</p>
+<p>改版本的过程：</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205740654.png" alt="image-20230425205740654"></p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205753755.png" alt="image-20230425205753755"></p>
+<p>点击Install Package 等待安装成功，pycharm弹出提示</p>
+<p>重启pycharm</p>
+<p>这样就能正常运行使用matplotlib库</p>
+<p>附上官网连接： <a href="https://matplotlib.org/stable/users/getting_started/index.html#installation-quick-start">https://matplotlib.org/stable/users/getting_started/index.html#installation-quick-start</a> </p>
+<h2 id="cv2库的安装"><a href="#cv2库的安装" class="headerlink" title="cv2库的安装"></a>cv2库的安装</h2><p>win+R,输入cmd打开控制台</p>
+<p>输入命令</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">pip install opencv-python  </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205811569.png" alt="image-20230425205811569"></p>
+<p>则安装成功</p>
+<p>重启pycharm</p>
+<p>运行得</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20230425205828595.png" alt="image-20230425205828595"></p>
+]]></content>
+      <categories>
+        <category>百宝箱</category>
+      </categories>
+      <tags>
+        <tag>软件安装与配置</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MVC模式与三层架构模式</title>
     <url>/post/ebbb47b7.html</url>
     <content><![CDATA[<h1 id="MVC模式与三层架构模式"><a href="#MVC模式与三层架构模式" class="headerlink" title="MVC模式与三层架构模式"></a>MVC模式与三层架构模式</h1><h3 id="什么是MVC模式？"><a href="#什么是MVC模式？" class="headerlink" title="什么是MVC模式？"></a>什么是MVC模式？</h3><p>MVC模式，即<strong>Model模型</strong>、<strong>View视图</strong>、<strong>Controller</strong>*<strong>控制器</strong></p>
@@ -226,6 +226,24 @@
       </tags>
   </entry>
   <entry>
+    <title>来个开篇词吧！</title>
+    <url>/post/b388a4c.html</url>
+    <content><![CDATA[<h1 id="有梦则刚，素履以往"><a href="#有梦则刚，素履以往" class="headerlink" title="有梦则刚，素履以往"></a>有梦则刚，素履以往</h1><p>于高山之巅，方见大河奔涌；于群峰之上，更觉长风浩荡。芳华待灼,砥砺深耕,奋楫笃行,履践致远。来即如露，去时如电，留不住的始终是那刹那芳华；凡益之道，与时偕行；坚定心中理想，与对未来的不懈追求，有梦则刚，素履以往；满怀着对未来的期望，迎接未知的挑战，看平凡闪耀出奇迹，人生最璀璨的瞬间莫过于那撕破深夜的火花，人生最幸福的事情莫过于不断的挑战自己，完善自己。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/65f2fcdb11784723b71c528e92d5542c.jpg" alt="65f2fcdb11784723b71c528e92d5542c"></p>
+<p>长路漫漫，晴雨交加，但若是心怀热爱，即使岁月荒芜，亦能奔山赴海，静待一树花开，热爱是一个人内心最深沉持久的力量，它不是心血来潮的三分热度，也不会因为时代变迁而稍纵即逝。相反，在历经时光考验与洗礼后，依然能够让人从中不断汲取营养；时间的长河奔腾不息，有静水流深，也有惊涛骇浪，直面困难不放弃，跌倒后勇敢站起来，抖擞精神再出发，是我们身上所独有的少年之气，是历经千帆举重若轻的沉淀，也是乐观淡然笑对生活的豁达。</p>
+<p>我们需要不断的去战胜自己，真正的优秀不是别人逼出来的，而是自己和自己死磕，不断地进行自我完善。比大地辽阔的是海洋，比海洋更浩瀚的是九天之上的星辰大海，凡益之道，与时偕行；逐梦星海，未来等你来！向未来！海到无边天作岸，山登绝顶我为峰。向未来! 两道风景相送，彼岸繁花相迎。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/12.jpg" alt="12"></p>
+<p>乘风好去，长空万里；眼底山河，胸中事业；树蕙餐英，上下求索；今日长缨在手，且把利剑破长空。穿花觅雨，直入云霄；风雨同舟，万变不从；凡心所向，素履以往；胸中有丘壑，立马振山河。明日之我，愿付苍流； 生如逆旅，无弗远届；聚沙成塔，滚石上山；一片冰心在玉壶，归来依旧是少年。矢志不渝，一苇以航；真抓实干，以启山林；你若前来，粉蝶盛开；有志何妨梦摘星，敢挽桑弓射玉衡。</p>
+<p>诸君：“三月桃花，四月欢唱；我自倾怀，且君随意；有志摘星，未来等你！<strong>我们静待花开，愿君如梦所期，不负春光不负己。”</strong></p>
+]]></content>
+      <categories>
+        <category>随想</category>
+      </categories>
+      <tags>
+        <tag>开篇词</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>VScodeC/C++环境（控制台乱码问题一步到位）</title>
     <url>/post/2af3af78.html</url>
     <content><![CDATA[<h1 id="VScode配置C-x2F-C-环境（控制台中文乱码问题一步到位）"><a href="#VScode配置C-x2F-C-环境（控制台中文乱码问题一步到位）" class="headerlink" title="VScode配置C&#x2F;C++环境（控制台中文乱码问题一步到位）"></a>VScode配置C&#x2F;C++环境（控制台中文乱码问题一步到位）</h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>C&#x2F;C++的编译器用过很多，VS2010(第一个C&#x2F;C++编译器，体验只能说一般，没有代码提示，记得是做第一次课设的时候，这玩意儿死活问题改不了，换成了VS2019，当时课设的问题就解决了，后面一段时间都在用这玩意)，VS2019（总体还是不错，虽然对于sacnf这类会有安全检查，但好歹可以在新建项目的时候就去掉，but没过多久人生第一台笔记本压根不够用了，换了一台新笔记本，好家伙赶上更新，我手痒直接装了VS2022，结果我的感觉是不如VS2019，but人又比较懒，不想卸载重装）VS2022（安全检查不能在一开始去掉了，只能建了项目后再去属性里面改，不过其实这也没啥大问题。让我想换掉它的最直接原因就是，这玩意太吃内存了，感觉比idea还吃内存，运行起来体验感非常不佳。嗯….既然都提到了idea,它的兄弟Clion我也用了）Clion(UI、代码高量、提示这些毫无疑问是非常不错的，但是其实我也不用C&#x2F;C++写工程，用点杀鸡用牛刀的感觉，而且这玩意CMake和中文乱码的配置问题也是在刚开始够你喝一壶了)而像devC++(实话实说除了比赛的时候用这玩意，其他时候，也是真心不想用，就像VS2010一样，体验很一般)，所以最后的最后我选择了VScode，今天分享的也就是VScode的C&#x2F;C++配置 。</p>
@@ -264,21 +282,30 @@
       </tags>
   </entry>
   <entry>
-    <title>来个开篇词吧！</title>
-    <url>/post/b388a4c.html</url>
-    <content><![CDATA[<h1 id="有梦则刚，素履以往"><a href="#有梦则刚，素履以往" class="headerlink" title="有梦则刚，素履以往"></a>有梦则刚，素履以往</h1><p>于高山之巅，方见大河奔涌；于群峰之上，更觉长风浩荡。芳华待灼,砥砺深耕,奋楫笃行,履践致远。来即如露，去时如电，留不住的始终是那刹那芳华；凡益之道，与时偕行；坚定心中理想，与对未来的不懈追求，有梦则刚，素履以往；满怀着对未来的期望，迎接未知的挑战，看平凡闪耀出奇迹，人生最璀璨的瞬间莫过于那撕破深夜的火花，人生最幸福的事情莫过于不断的挑战自己，完善自己。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/65f2fcdb11784723b71c528e92d5542c.jpg" alt="65f2fcdb11784723b71c528e92d5542c"></p>
-<p>长路漫漫，晴雨交加，但若是心怀热爱，即使岁月荒芜，亦能奔山赴海，静待一树花开，热爱是一个人内心最深沉持久的力量，它不是心血来潮的三分热度，也不会因为时代变迁而稍纵即逝。相反，在历经时光考验与洗礼后，依然能够让人从中不断汲取营养；时间的长河奔腾不息，有静水流深，也有惊涛骇浪，直面困难不放弃，跌倒后勇敢站起来，抖擞精神再出发，是我们身上所独有的少年之气，是历经千帆举重若轻的沉淀，也是乐观淡然笑对生活的豁达。</p>
-<p>我们需要不断的去战胜自己，真正的优秀不是别人逼出来的，而是自己和自己死磕，不断地进行自我完善。比大地辽阔的是海洋，比海洋更浩瀚的是九天之上的星辰大海，凡益之道，与时偕行；逐梦星海，未来等你来！向未来！海到无边天作岸，山登绝顶我为峰。向未来! 两道风景相送，彼岸繁花相迎。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/12.jpg" alt="12"></p>
-<p>乘风好去，长空万里；眼底山河，胸中事业；树蕙餐英，上下求索；今日长缨在手，且把利剑破长空。穿花觅雨，直入云霄；风雨同舟，万变不从；凡心所向，素履以往；胸中有丘壑，立马振山河。明日之我，愿付苍流； 生如逆旅，无弗远届；聚沙成塔，滚石上山；一片冰心在玉壶，归来依旧是少年。矢志不渝，一苇以航；真抓实干，以启山林；你若前来，粉蝶盛开；有志何妨梦摘星，敢挽桑弓射玉衡。</p>
-<p>诸君：“三月桃花，四月欢唱；我自倾怀，且君随意；有志摘星，未来等你！<strong>我们静待花开，愿君如梦所期，不负春光不负己。”</strong></p>
+    <title>vue3实现省市联动表项</title>
+    <url>/post/6cf485f1.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>所用技术栈：vue3+ElementPlus</p>
+<p>需求：要求在对用户信息中的籍贯信息录入时，有一个省市联动的表单可供选择</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>参考文档：<a href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
+<p>下载对应插件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install element-china-area-data -S</span><br></pre></td></tr></table></figure>
+
+<p>导入库：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  provinceAndCityData,</span><br><span class="line">  pcTextArr,</span><br><span class="line">  regionData,</span><br><span class="line">  pcaTextArr,</span><br><span class="line">  codeToText,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>vue3页面代码的实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">  size=&quot;large&quot;</span><br><span class="line">  :options=&quot;pcTextArr&quot;</span><br><span class="line">  v-model=&quot;sd&quot;</span><br><span class="line">  @change=&quot;handleChange&quot;</span><br><span class="line">  &gt;</span><br><span class="line">&lt;/el-cascader&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sd = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="comment">//这里的authorMsg为存储最后选择结果的字段</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleChange</span>(<span class="params"></span>)&#123;</span><br><span class="line">  authorMsg.<span class="property">city</span> = sd.<span class="property">value</span>[<span class="number">0</span>]+sd.<span class="property">value</span>[<span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212756479.png" alt="image-20240511212756479"></p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212816165.png" alt="image-20240511212816165"></p>
 ]]></content>
       <categories>
-        <category>随想</category>
+        <category>前端</category>
       </categories>
       <tags>
-        <tag>开篇词</tag>
+        <tag>vue3</tag>
       </tags>
   </entry>
   <entry>
@@ -320,33 +347,6 @@
       </categories>
       <tags>
         <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue3实现省市联动表项</title>
-    <url>/post/6cf485f1.html</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>所用技术栈：vue3+ElementPlus</p>
-<p>需求：要求在对用户信息中的籍贯信息录入时，有一个省市联动的表单可供选择</p>
-<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>参考文档：<a href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
-<p>下载对应插件：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install element-china-area-data -S</span><br></pre></td></tr></table></figure>
-
-<p>导入库：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  provinceAndCityData,</span><br><span class="line">  pcTextArr,</span><br><span class="line">  regionData,</span><br><span class="line">  pcaTextArr,</span><br><span class="line">  codeToText,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>vue3页面代码的实现：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">  size=&quot;large&quot;</span><br><span class="line">  :options=&quot;pcTextArr&quot;</span><br><span class="line">  v-model=&quot;sd&quot;</span><br><span class="line">  @change=&quot;handleChange&quot;</span><br><span class="line">  &gt;</span><br><span class="line">&lt;/el-cascader&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sd = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="comment">//这里的authorMsg为存储最后选择结果的字段</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleChange</span>(<span class="params"></span>)&#123;</span><br><span class="line">  authorMsg.<span class="property">city</span> = sd.<span class="property">value</span>[<span class="number">0</span>]+sd.<span class="property">value</span>[<span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212756479.png" alt="image-20240511212756479"></p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212816165.png" alt="image-20240511212816165"></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>vue3</tag>
       </tags>
   </entry>
   <entry>
