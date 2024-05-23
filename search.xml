@@ -209,6 +209,58 @@
       </tags>
   </entry>
   <entry>
+    <title>Lambda表达式的方法引用</title>
+    <url>/post/ba01a835.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在使用Lambda表达式的时候，我们在方法体中所写的代码就相当于是一种解决方案：那所提供的参数，执行方法体中的代码。所以如果当时Lambda表达式的方法体中<strong>除了调用现有方法之外什么都不做，就使用其本来就已经存在的方案，</strong>这个时候我们就可以采用方法引用的书写方式。</p>
+<h2 id="实例方法引用"><a href="#实例方法引用" class="headerlink" title="实例方法引用"></a>实例方法引用</h2><p>语法：<code>对象 :: 实例方法</code></p>
+<p>特点：在Lambda表达式的方法体中，通过“对象”来调用指定的某个“实例方法”。</p>
+<blockquote>
+<p>什么是实例方法？</p>
+<p>在Java中，实例方法是与对象实例相关联的方法。换句话说，它们是定义在类中的方法，必须通过类的实例（对象）来调用。实例方法可以访问和操作对象的属性，并且可以调用其他实例方法。</p>
+</blockquote>
+<p>要求：函数式接口中<strong>抽象方法的返回值类型和形参列表</strong>与<strong>内部通过对象调用某个实例方法的返回值类型和形参列表</strong>保持一致。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153434086.png" alt="image-20240523153434086"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = System.out::println;</span><br><span class="line">consumer.accept(<span class="string">&quot;Hello World&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Teacher</span> <span class="variable">teacher</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Teacher</span>(<span class="string">&quot;ande&quot;</span>, <span class="number">18</span>);</span><br><span class="line">Supplier&lt;String&gt; supplier1 = <span class="keyword">new</span> <span class="title class_">Supplier</span>&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> teacher.getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(supplier1.get());</span><br><span class="line"><span class="comment">//简化后的代码</span></span><br><span class="line">Supplier&lt;String&gt; supplier = teacher::getName;</span><br><span class="line">System.out.println(supplier.get());</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态方法引用"><a href="#静态方法引用" class="headerlink" title="静态方法引用"></a>静态方法引用</h2><p>语法：<code>**类 :: 静态方法**</code></p>
+<p>特点：在Lambda表达式的方法体中，通过“类名”来调用指定的某个“静态方法”。</p>
+<blockquote>
+<p>什么是静态方法？</p>
+<p>静态方法是与类相关联而不是与对象实例相关联的方法，使用 <strong>static</strong> 关键字来声明</p>
+<p>通过类名直接调用，无需创建类的实例</p>
+<p>静态方法通常用于实现与类本身相关的功能，例如工具方法或者是与类的属性操作无关的功能</p>
+</blockquote>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153740679.png" alt="image-20240523153740679"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    Function&lt;Double, Long&gt; function1 = <span class="keyword">new</span> <span class="title class_">Function</span>&lt;Double, Long&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Long <span class="title function_">apply</span><span class="params">(Double aDouble)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Math.round(aDouble);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    System.out.println(function1.apply(<span class="number">3.14</span>));</span><br><span class="line">    <span class="comment">//改写后</span></span><br><span class="line">    Function&lt;Double, Long&gt; function = Math::round;</span><br><span class="line">    System.out.println(function.apply(<span class="number">3.14</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊方法引用"><a href="#特殊方法引用" class="headerlink" title="特殊方法引用"></a>特殊方法引用</h2><p>语法：<code>**类名 :: 实例方法**</code></p>
+<p>特点：在Lambda表达式的方法体中，通过方法的第一个形参来调用指定的某个“实例方法”</p>
+<p>要求：把函数式接口中<strong>抽象方法的第一个形参作为方法的调用者对象</strong>，并且从第二个形参开始（或无参）可以对应到被调用实例方法的参数列表中，<strong>并且返回值类型保持一致</strong>。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153832226.png" alt="image-20240523153832226"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//特殊方法引用</span></span><br><span class="line">Comparator&lt;Double&gt; comparator1 = <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Double&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Double o1, Double o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> o1.compareTo(o2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(comparator1.compare(<span class="number">10.0</span>, <span class="number">20.0</span>));</span><br><span class="line"><span class="comment">//改写后</span></span><br><span class="line">Comparator&lt;Double&gt; comparator = Double::compareTo;</span><br><span class="line">System.out.println(comparator.compare(<span class="number">10.0</span>, <span class="number">20.0</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="构造方法引用"><a href="#构造方法引用" class="headerlink" title="构造方法引用"></a>构造方法引用</h2><p>语法：<code>**类名 :: new**</code></p>
+<p>特点：在Lambda表达式的方法体中，<strong>返回指定“类名”来创建出来的对象</strong></p>
+<p>要求：创建对象所调用构造方法形参列表和函数式接口中的方法的<strong>形参列表保持一致</strong>，并且方法的返回值类型和创建对象的<strong>类型保持一致</strong>。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153911942.png" alt="image-20240523153911942"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Supplier&lt;Teacher&gt; supplier1 = <span class="keyword">new</span> <span class="title class_">Supplier</span>&lt;Teacher&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Teacher <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Teacher</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(supplier1.get());</span><br><span class="line"></span><br><span class="line">Supplier&lt;Teacher&gt; supplier = Teacher::<span class="keyword">new</span>;</span><br><span class="line">System.out.println(supplier.get());</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组引用"><a href="#数组引用" class="headerlink" title="数组引用"></a>数组引用</h2><p>语法：<code>**数组类型 :: new**</code></p>
+<p>特点：在Lambda表达式的方法体中，创建并返回指定类型的“数组”</p>
+<p>要求：重写的方法有且只有一个整数型的参数，并且该参数就是用于设置数组的空间长度，并且重写方法的返回值类型和创建数组的类型保持一致。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Function&lt;Integer, <span class="type">int</span>[]&gt; function12 = <span class="keyword">new</span> <span class="title class_">Function</span>&lt;Integer, <span class="type">int</span>[]&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] apply(Integer integer) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[integer];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(Arrays.toString(function12.apply(<span class="number">10</span>)));</span><br><span class="line"></span><br><span class="line">Function&lt;Integer, <span class="type">int</span>[]&gt; function2 = <span class="type">int</span>[]::<span class="keyword">new</span>;</span><br><span class="line">System.out.println(Arrays.toString(function2.apply(<span class="number">20</span>)))</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Lambda</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SSM项目启动失败</title>
     <url>/post/f3c48358.html</url>
     <content><![CDATA[<h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>通过配置类的方式编写一个基于SSM框架的一个小项目时，在配置类反复检查没有问题的情况下，启动Tomcat服务器时报错，启动失败。</p>
@@ -282,6 +334,33 @@
       </tags>
   </entry>
   <entry>
+    <title>vue3实现省市联动表项</title>
+    <url>/post/6cf485f1.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>所用技术栈：vue3+ElementPlus</p>
+<p>需求：要求在对用户信息中的籍贯信息录入时，有一个省市联动的表单可供选择</p>
+<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>参考文档：<a href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
+<p>下载对应插件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install element-china-area-data -S</span><br></pre></td></tr></table></figure>
+
+<p>导入库：</p>
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  provinceAndCityData,</span><br><span class="line">  pcTextArr,</span><br><span class="line">  regionData,</span><br><span class="line">  pcaTextArr,</span><br><span class="line">  codeToText,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>vue3页面代码的实现：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">  size=&quot;large&quot;</span><br><span class="line">  :options=&quot;pcTextArr&quot;</span><br><span class="line">  v-model=&quot;sd&quot;</span><br><span class="line">  @change=&quot;handleChange&quot;</span><br><span class="line">  &gt;</span><br><span class="line">&lt;/el-cascader&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sd = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="comment">//这里的authorMsg为存储最后选择结果的字段</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleChange</span>(<span class="params"></span>)&#123;</span><br><span class="line">  authorMsg.<span class="property">city</span> = sd.<span class="property">value</span>[<span class="number">0</span>]+sd.<span class="property">value</span>[<span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212756479.png" alt="image-20240511212756479"></p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212816165.png" alt="image-20240511212816165"></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>vue3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>useRoute与useRouter的区别</title>
     <url>/post/eecfc82e.html</url>
     <content><![CDATA[<h2 id="官方文档："><a href="#官方文档：" class="headerlink" title="官方文档："></a>官方文档：</h2><p><a href="https://router.vuejs.org/zh/api/#Functions-useRoute">https://router.vuejs.org/zh/api/#Functions-useRoute</a></p>
@@ -327,30 +406,44 @@
       </tags>
   </entry>
   <entry>
-    <title>vue3实现省市联动表项</title>
-    <url>/post/6cf485f1.html</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>所用技术栈：vue3+ElementPlus</p>
-<p>需求：要求在对用户信息中的籍贯信息录入时，有一个省市联动的表单可供选择</p>
-<h2 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h2><p>参考文档：<a href="https://www.npmjs.com/package/element-china-area-data">https://www.npmjs.com/package/element-china-area-data</a></p>
-<p>下载对应插件：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install element-china-area-data -S</span><br></pre></td></tr></table></figure>
-
-<p>导入库：</p>
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  provinceAndCityData,</span><br><span class="line">  pcTextArr,</span><br><span class="line">  regionData,</span><br><span class="line">  pcaTextArr,</span><br><span class="line">  codeToText,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&quot;element-china-area-data&quot;</span>;</span><br></pre></td></tr></table></figure>
-
-<p>vue3页面代码的实现：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;el-cascader</span><br><span class="line">  size=&quot;large&quot;</span><br><span class="line">  :options=&quot;pcTextArr&quot;</span><br><span class="line">  v-model=&quot;sd&quot;</span><br><span class="line">  @change=&quot;handleChange&quot;</span><br><span class="line">  &gt;</span><br><span class="line">&lt;/el-cascader&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight typescript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> sd = <span class="title function_">ref</span>([])</span><br><span class="line"><span class="comment">//这里的authorMsg为存储最后选择结果的字段</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">handleChange</span>(<span class="params"></span>)&#123;</span><br><span class="line">  authorMsg.<span class="property">city</span> = sd.<span class="property">value</span>[<span class="number">0</span>]+sd.<span class="property">value</span>[<span class="number">1</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212756479.png" alt="image-20240511212756479"></p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240511212816165.png" alt="image-20240511212816165"></p>
+    <title>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</title>
+    <url>/post/e5b65d47.html</url>
+    <content><![CDATA[<h1 id="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"><a href="#对于数据库范式（1NF，2NF，3NF，BCNF）的理解" class="headerlink" title="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"></a>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</h1><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
+<h2 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h2><p>定义：属于第一范式关系的所有属性不能够再被拆分，即为一张简单的基本表</p>
+<p>一个列名智能对应到一列，并且每一列都不可分</p>
+<p>复杂表还能继续拆分，不符合第一范式：</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
+<p>符合基本范式的基本表：</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
+<h2 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h2><p>定义：前提是满足第一范式且每个非主属性完全函数依赖于任何一个候选码则关系R为第二范式</p>
+<p><strong>什么候选码？</strong></p>
+<p>若关系中的某一属性组的值能唯一地标识一个元组，而其子集不能，则称该属性组为候选码。若一个关系中有多个候选码，则选定其中一个为主码。</p>
+<p><strong>什么是主属性？</strong></p>
+<p>所有候选码的属性称为主属性。不包含在任何候选码中的属性称为非主属性或非码属性。</p>
+<p><strong>什么是完全函数依赖？</strong></p>
+<p>设R(U)是属性集U上的关系模式，X、Y是U的子集。如果Y函数依赖于X，且对于X的任何一个真子集X’，都有Y不函数依赖于X’，则称Y对X完全函数依赖。记作：如果Y函数依赖于X，但Y不完全函数依赖于X，则称Y对X部分函数依赖。</p>
+<p>简单说就是：指不能存在仅依赖于候选键（主属性）的一部分的属性，所以只有一个主属性的表如果符合第一范式就一定符合第二范式。</p>
+<p><strong>如何判断是否符合第二<strong><strong>范式</strong></strong>？</strong></p>
+<ol>
+<li>找出数据表中所有的候选键；</li>
+<li>找出所有主属性和非主属性</li>
+<li>判断所有的非主属性对候选键的部分函数依赖</li>
+</ol>
+<h2 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h2><p>定义：非主属性既不传递依赖于码，也不部分依赖于码，<strong>相互独立不存在其他函数关系</strong></p>
+<p>也就是<strong>在第二<strong><strong>范式</strong></strong>的基础上消除<strong><strong>传递函数</strong></strong>依赖，每一列（所有的非主属性）都要与候选码直接相关，而非间接相关，既不部分依赖于候选码，也不传递依赖于候选码。</strong></p>
+<h2 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h2><p>也就是修正后的第三范式</p>
+<p>定义：设关系模式R满足第一范式，如果对于R的每个函数依赖，X-&gt;Y,若Y不属于X，则X必含有候选码，那么R属于bc范式</p>
+<p>换句话说，在关系模式R中，如果每一个决定属性集都包含候选码，则R属于bc范式，没有任何属性（主属性和非主属性）对候选码有部分函数依赖和传递函数依赖</p>
+<h2 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h2><p>将一个2NF关系采用投影分解的方法，分解成多个3NF的关系，可以在一定程度上解决原2NF关系中存在的插入异常、删除异常、数据冗余度大、修改复杂等问题。</p>
+<p>但将一个2NF关系分解成多个3NF的关系后，在有些情况下，也还是不能完全消除关系模式中的各种异常情况和数据冗余。</p>
+<p>哪里不符合BC范式，哪里就会出现冗余</p>
+<p>范式级别越高、信息越分散，查询也越难</p>
 ]]></content>
       <categories>
-        <category>前端</category>
+        <category>后端</category>
       </categories>
       <tags>
-        <tag>vue3</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
@@ -422,47 +515,6 @@
       </categories>
       <tags>
         <tag>Lambda</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</title>
-    <url>/post/e5b65d47.html</url>
-    <content><![CDATA[<h1 id="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"><a href="#对于数据库范式（1NF，2NF，3NF，BCNF）的理解" class="headerlink" title="对于数据库范式（1NF，2NF，3NF，BCNF）的理解"></a>对于数据库范式（1NF，2NF，3NF，BCNF）的理解</h1><p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
-<h2 id="第一范式"><a href="#第一范式" class="headerlink" title="第一范式"></a>第一范式</h2><p>定义：属于第一范式关系的所有属性不能够再被拆分，即为一张简单的基本表</p>
-<p>一个列名智能对应到一列，并且每一列都不可分</p>
-<p>复杂表还能继续拆分，不符合第一范式：</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
-<p>符合基本范式的基本表：</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/asynccode" alt="img"></p>
-<h2 id="第二范式"><a href="#第二范式" class="headerlink" title="第二范式"></a>第二范式</h2><p>定义：前提是满足第一范式且每个非主属性完全函数依赖于任何一个候选码则关系R为第二范式</p>
-<p><strong>什么候选码？</strong></p>
-<p>若关系中的某一属性组的值能唯一地标识一个元组，而其子集不能，则称该属性组为候选码。若一个关系中有多个候选码，则选定其中一个为主码。</p>
-<p><strong>什么是主属性？</strong></p>
-<p>所有候选码的属性称为主属性。不包含在任何候选码中的属性称为非主属性或非码属性。</p>
-<p><strong>什么是完全函数依赖？</strong></p>
-<p>设R(U)是属性集U上的关系模式，X、Y是U的子集。如果Y函数依赖于X，且对于X的任何一个真子集X’，都有Y不函数依赖于X’，则称Y对X完全函数依赖。记作：如果Y函数依赖于X，但Y不完全函数依赖于X，则称Y对X部分函数依赖。</p>
-<p>简单说就是：指不能存在仅依赖于候选键（主属性）的一部分的属性，所以只有一个主属性的表如果符合第一范式就一定符合第二范式。</p>
-<p><strong>如何判断是否符合第二<strong><strong>范式</strong></strong>？</strong></p>
-<ol>
-<li>找出数据表中所有的候选键；</li>
-<li>找出所有主属性和非主属性</li>
-<li>判断所有的非主属性对候选键的部分函数依赖</li>
-</ol>
-<h2 id="第三范式"><a href="#第三范式" class="headerlink" title="第三范式"></a>第三范式</h2><p>定义：非主属性既不传递依赖于码，也不部分依赖于码，<strong>相互独立不存在其他函数关系</strong></p>
-<p>也就是<strong>在第二<strong><strong>范式</strong></strong>的基础上消除<strong><strong>传递函数</strong></strong>依赖，每一列（所有的非主属性）都要与候选码直接相关，而非间接相关，既不部分依赖于候选码，也不传递依赖于候选码。</strong></p>
-<h2 id="BCNF范式"><a href="#BCNF范式" class="headerlink" title="BCNF范式"></a>BCNF范式</h2><p>也就是修正后的第三范式</p>
-<p>定义：设关系模式R满足第一范式，如果对于R的每个函数依赖，X-&gt;Y,若Y不属于X，则X必含有候选码，那么R属于bc范式</p>
-<p>换句话说，在关系模式R中，如果每一个决定属性集都包含候选码，则R属于bc范式，没有任何属性（主属性和非主属性）对候选码有部分函数依赖和传递函数依赖</p>
-<h2 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h2><p>将一个2NF关系采用投影分解的方法，分解成多个3NF的关系，可以在一定程度上解决原2NF关系中存在的插入异常、删除异常、数据冗余度大、修改复杂等问题。</p>
-<p>但将一个2NF关系分解成多个3NF的关系后，在有些情况下，也还是不能完全消除关系模式中的各种异常情况和数据冗余。</p>
-<p>哪里不符合BC范式，哪里就会出现冗余</p>
-<p>范式级别越高、信息越分散，查询也越难</p>
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>数据库</tag>
       </tags>
   </entry>
   <entry>
