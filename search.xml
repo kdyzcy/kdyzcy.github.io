@@ -134,58 +134,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Lambda表达式的方法引用</title>
-    <url>/post/ba01a835.html</url>
-    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在使用Lambda表达式的时候，我们在方法体中所写的代码就相当于是一种解决方案：那所提供的参数，执行方法体中的代码。所以如果当时Lambda表达式的方法体中<strong>除了调用现有方法之外什么都不做，就使用其本来就已经存在的方案，</strong>这个时候我们就可以采用方法引用的书写方式。</p>
-<h2 id="实例方法引用"><a href="#实例方法引用" class="headerlink" title="实例方法引用"></a>实例方法引用</h2><p>语法：<code>对象 :: 实例方法</code></p>
-<p>特点：在Lambda表达式的方法体中，通过“对象”来调用指定的某个“实例方法”。</p>
-<blockquote>
-<p>什么是实例方法？</p>
-<p>在Java中，实例方法是与对象实例相关联的方法。换句话说，它们是定义在类中的方法，必须通过类的实例（对象）来调用。实例方法可以访问和操作对象的属性，并且可以调用其他实例方法。</p>
-</blockquote>
-<p>要求：函数式接口中<strong>抽象方法的返回值类型和形参列表</strong>与<strong>内部通过对象调用某个实例方法的返回值类型和形参列表</strong>保持一致。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153434086.png" alt="image-20240523153434086"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = System.out::println;</span><br><span class="line">consumer.accept(<span class="string">&quot;Hello World&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Teacher</span> <span class="variable">teacher</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Teacher</span>(<span class="string">&quot;ande&quot;</span>, <span class="number">18</span>);</span><br><span class="line">Supplier&lt;String&gt; supplier1 = <span class="keyword">new</span> <span class="title class_">Supplier</span>&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> teacher.getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(supplier1.get());</span><br><span class="line"><span class="comment">//简化后的代码</span></span><br><span class="line">Supplier&lt;String&gt; supplier = teacher::getName;</span><br><span class="line">System.out.println(supplier.get());</span><br></pre></td></tr></table></figure>
-
-<h2 id="静态方法引用"><a href="#静态方法引用" class="headerlink" title="静态方法引用"></a>静态方法引用</h2><p>语法：<code>**类 :: 静态方法**</code></p>
-<p>特点：在Lambda表达式的方法体中，通过“类名”来调用指定的某个“静态方法”。</p>
-<blockquote>
-<p>什么是静态方法？</p>
-<p>静态方法是与类相关联而不是与对象实例相关联的方法，使用 <strong>static</strong> 关键字来声明</p>
-<p>通过类名直接调用，无需创建类的实例</p>
-<p>静态方法通常用于实现与类本身相关的功能，例如工具方法或者是与类的属性操作无关的功能</p>
-</blockquote>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153740679.png" alt="image-20240523153740679"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    Function&lt;Double, Long&gt; function1 = <span class="keyword">new</span> <span class="title class_">Function</span>&lt;Double, Long&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Long <span class="title function_">apply</span><span class="params">(Double aDouble)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Math.round(aDouble);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    System.out.println(function1.apply(<span class="number">3.14</span>));</span><br><span class="line">    <span class="comment">//改写后</span></span><br><span class="line">    Function&lt;Double, Long&gt; function = Math::round;</span><br><span class="line">    System.out.println(function.apply(<span class="number">3.14</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="特殊方法引用"><a href="#特殊方法引用" class="headerlink" title="特殊方法引用"></a>特殊方法引用</h2><p>语法：<code>**类名 :: 实例方法**</code></p>
-<p>特点：在Lambda表达式的方法体中，通过方法的第一个形参来调用指定的某个“实例方法”</p>
-<p>要求：把函数式接口中<strong>抽象方法的第一个形参作为方法的调用者对象</strong>，并且从第二个形参开始（或无参）可以对应到被调用实例方法的参数列表中，<strong>并且返回值类型保持一致</strong>。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153832226.png" alt="image-20240523153832226"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//特殊方法引用</span></span><br><span class="line">Comparator&lt;Double&gt; comparator1 = <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Double&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Double o1, Double o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> o1.compareTo(o2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(comparator1.compare(<span class="number">10.0</span>, <span class="number">20.0</span>));</span><br><span class="line"><span class="comment">//改写后</span></span><br><span class="line">Comparator&lt;Double&gt; comparator = Double::compareTo;</span><br><span class="line">System.out.println(comparator.compare(<span class="number">10.0</span>, <span class="number">20.0</span>));</span><br></pre></td></tr></table></figure>
-
-<h2 id="构造方法引用"><a href="#构造方法引用" class="headerlink" title="构造方法引用"></a>构造方法引用</h2><p>语法：<code>**类名 :: new**</code></p>
-<p>特点：在Lambda表达式的方法体中，<strong>返回指定“类名”来创建出来的对象</strong></p>
-<p>要求：创建对象所调用构造方法形参列表和函数式接口中的方法的<strong>形参列表保持一致</strong>，并且方法的返回值类型和创建对象的<strong>类型保持一致</strong>。</p>
-<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153911942.png" alt="image-20240523153911942"></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Supplier&lt;Teacher&gt; supplier1 = <span class="keyword">new</span> <span class="title class_">Supplier</span>&lt;Teacher&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Teacher <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Teacher</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(supplier1.get());</span><br><span class="line"></span><br><span class="line">Supplier&lt;Teacher&gt; supplier = Teacher::<span class="keyword">new</span>;</span><br><span class="line">System.out.println(supplier.get());</span><br></pre></td></tr></table></figure>
-
-<h2 id="数组引用"><a href="#数组引用" class="headerlink" title="数组引用"></a>数组引用</h2><p>语法：<code>**数组类型 :: new**</code></p>
-<p>特点：在Lambda表达式的方法体中，创建并返回指定类型的“数组”</p>
-<p>要求：重写的方法有且只有一个整数型的参数，并且该参数就是用于设置数组的空间长度，并且重写方法的返回值类型和创建数组的类型保持一致。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Function&lt;Integer, <span class="type">int</span>[]&gt; function12 = <span class="keyword">new</span> <span class="title class_">Function</span>&lt;Integer, <span class="type">int</span>[]&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] apply(Integer integer) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[integer];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(Arrays.toString(function12.apply(<span class="number">10</span>)));</span><br><span class="line"></span><br><span class="line">Function&lt;Integer, <span class="type">int</span>[]&gt; function2 = <span class="type">int</span>[]::<span class="keyword">new</span>;</span><br><span class="line">System.out.println(Arrays.toString(function2.apply(<span class="number">20</span>)))</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>后端</category>
-      </categories>
-      <tags>
-        <tag>Lambda</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Lambda表达式的基本使用</title>
     <url>/post/79fbda77.html</url>
     <content><![CDATA[<h2 id="语法进一步精简规则"><a href="#语法进一步精简规则" class="headerlink" title="语法进一步精简规则"></a>语法进一步精简规则</h2><p>在原本的语法基础上，Lambda表达式已经相对来说比较精简了，但在以下的应用场景中，我们就可以对Lambda表达式的语法进行精简，场景如下：</p>
@@ -258,6 +206,58 @@
       </categories>
       <tags>
         <tag>MVC</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Lambda表达式的方法引用</title>
+    <url>/post/ba01a835.html</url>
+    <content><![CDATA[<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在使用Lambda表达式的时候，我们在方法体中所写的代码就相当于是一种解决方案：那所提供的参数，执行方法体中的代码。所以如果当时Lambda表达式的方法体中<strong>除了调用现有方法之外什么都不做，就使用其本来就已经存在的方案，</strong>这个时候我们就可以采用方法引用的书写方式。</p>
+<h2 id="实例方法引用"><a href="#实例方法引用" class="headerlink" title="实例方法引用"></a>实例方法引用</h2><p>语法：<code>对象 :: 实例方法</code></p>
+<p>特点：在Lambda表达式的方法体中，通过“对象”来调用指定的某个“实例方法”。</p>
+<blockquote>
+<p>什么是实例方法？</p>
+<p>在Java中，实例方法是与对象实例相关联的方法。换句话说，它们是定义在类中的方法，必须通过类的实例（对象）来调用。实例方法可以访问和操作对象的属性，并且可以调用其他实例方法。</p>
+</blockquote>
+<p>要求：函数式接口中<strong>抽象方法的返回值类型和形参列表</strong>与<strong>内部通过对象调用某个实例方法的返回值类型和形参列表</strong>保持一致。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153434086.png" alt="image-20240523153434086"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Consumer&lt;String&gt; consumer = System.out::println;</span><br><span class="line">consumer.accept(<span class="string">&quot;Hello World&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">Teacher</span> <span class="variable">teacher</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Teacher</span>(<span class="string">&quot;ande&quot;</span>, <span class="number">18</span>);</span><br><span class="line">Supplier&lt;String&gt; supplier1 = <span class="keyword">new</span> <span class="title class_">Supplier</span>&lt;String&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> teacher.getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(supplier1.get());</span><br><span class="line"><span class="comment">//简化后的代码</span></span><br><span class="line">Supplier&lt;String&gt; supplier = teacher::getName;</span><br><span class="line">System.out.println(supplier.get());</span><br></pre></td></tr></table></figure>
+
+<h2 id="静态方法引用"><a href="#静态方法引用" class="headerlink" title="静态方法引用"></a>静态方法引用</h2><p>语法：<code>**类 :: 静态方法**</code></p>
+<p>特点：在Lambda表达式的方法体中，通过“类名”来调用指定的某个“静态方法”。</p>
+<blockquote>
+<p>什么是静态方法？</p>
+<p>静态方法是与类相关联而不是与对象实例相关联的方法，使用 <strong>static</strong> 关键字来声明</p>
+<p>通过类名直接调用，无需创建类的实例</p>
+<p>静态方法通常用于实现与类本身相关的功能，例如工具方法或者是与类的属性操作无关的功能</p>
+</blockquote>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153740679.png" alt="image-20240523153740679"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    Function&lt;Double, Long&gt; function1 = <span class="keyword">new</span> <span class="title class_">Function</span>&lt;Double, Long&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> Long <span class="title function_">apply</span><span class="params">(Double aDouble)</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> Math.round(aDouble);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    System.out.println(function1.apply(<span class="number">3.14</span>));</span><br><span class="line">    <span class="comment">//改写后</span></span><br><span class="line">    Function&lt;Double, Long&gt; function = Math::round;</span><br><span class="line">    System.out.println(function.apply(<span class="number">3.14</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="特殊方法引用"><a href="#特殊方法引用" class="headerlink" title="特殊方法引用"></a>特殊方法引用</h2><p>语法：<code>**类名 :: 实例方法**</code></p>
+<p>特点：在Lambda表达式的方法体中，通过方法的第一个形参来调用指定的某个“实例方法”</p>
+<p>要求：把函数式接口中<strong>抽象方法的第一个形参作为方法的调用者对象</strong>，并且从第二个形参开始（或无参）可以对应到被调用实例方法的参数列表中，<strong>并且返回值类型保持一致</strong>。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153832226.png" alt="image-20240523153832226"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//特殊方法引用</span></span><br><span class="line">Comparator&lt;Double&gt; comparator1 = <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Double&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Double o1, Double o2)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> o1.compareTo(o2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(comparator1.compare(<span class="number">10.0</span>, <span class="number">20.0</span>));</span><br><span class="line"><span class="comment">//改写后</span></span><br><span class="line">Comparator&lt;Double&gt; comparator = Double::compareTo;</span><br><span class="line">System.out.println(comparator.compare(<span class="number">10.0</span>, <span class="number">20.0</span>));</span><br></pre></td></tr></table></figure>
+
+<h2 id="构造方法引用"><a href="#构造方法引用" class="headerlink" title="构造方法引用"></a>构造方法引用</h2><p>语法：<code>**类名 :: new**</code></p>
+<p>特点：在Lambda表达式的方法体中，<strong>返回指定“类名”来创建出来的对象</strong></p>
+<p>要求：创建对象所调用构造方法形参列表和函数式接口中的方法的<strong>形参列表保持一致</strong>，并且方法的返回值类型和创建对象的<strong>类型保持一致</strong>。</p>
+<p><img src="https://cycy-1313208795.cos.ap-guangzhou.myqcloud.com/img/image-20240523153911942.png" alt="image-20240523153911942"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Supplier&lt;Teacher&gt; supplier1 = <span class="keyword">new</span> <span class="title class_">Supplier</span>&lt;Teacher&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Teacher <span class="title function_">get</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Teacher</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(supplier1.get());</span><br><span class="line"></span><br><span class="line">Supplier&lt;Teacher&gt; supplier = Teacher::<span class="keyword">new</span>;</span><br><span class="line">System.out.println(supplier.get());</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组引用"><a href="#数组引用" class="headerlink" title="数组引用"></a>数组引用</h2><p>语法：<code>**数组类型 :: new**</code></p>
+<p>特点：在Lambda表达式的方法体中，创建并返回指定类型的“数组”</p>
+<p>要求：重写的方法有且只有一个整数型的参数，并且该参数就是用于设置数组的空间长度，并且重写方法的返回值类型和创建数组的类型保持一致。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Function&lt;Integer, <span class="type">int</span>[]&gt; function12 = <span class="keyword">new</span> <span class="title class_">Function</span>&lt;Integer, <span class="type">int</span>[]&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[] apply(Integer integer) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">int</span>[integer];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">System.out.println(Arrays.toString(function12.apply(<span class="number">10</span>)));</span><br><span class="line"></span><br><span class="line">Function&lt;Integer, <span class="type">int</span>[]&gt; function2 = <span class="type">int</span>[]::<span class="keyword">new</span>;</span><br><span class="line">System.out.println(Arrays.toString(function2.apply(<span class="number">20</span>)))</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>Lambda</tag>
       </tags>
   </entry>
   <entry>
