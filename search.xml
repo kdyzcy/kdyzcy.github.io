@@ -537,4 +537,43 @@
         <tag>数据库</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SpringBoot整合OCR功能</title>
+    <url>/post/ebeef66a.html</url>
+    <content><![CDATA[<h1 id="PFpeg">简介</h1>
+
+<p>使用Java实现图片内容的实现功能，如验证码图片的读取</p>
+<p>所用框架：Tess4j  项目地址：<a href="https://github.com/nguyenq/tess4j">https://github.com/nguyenq/tess4j</a></p>
+<h1 id="ajo2N">整合使用</h1>
+
+<ol>
+<li><strong>安装下载tessdata语言包，添加语言库</strong></li>
+</ol>
+<p><a href="https://www.yuque.com/attachments/yuque/0/2025/zip/32676048/1748356385287-8e19688a-e367-413d-97a5-8c00823b1545.zip">tessdata.zip</a></p>
+<ol start="2">
+<li><strong>引入依赖：</strong></li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.java.dev.jna<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jna<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.14.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>net.sourceforge.tess4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>tess4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.5.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><strong>整合基本使用</strong></li>
+</ol>
+<p>定义配置类：</p>
+<p>这里需要说明一下为什么这里地址是写死的，原本我也是使用的相对路径，使用相对路径在本地编译器上运行也是可以，没有问题的，但是当打jar包后再进行运行，就会有找不到库的问题。有些地方说java启动参数、修改打包范围什么的，但是都试过了，问题并不能解决，所以这里讲语言库的地址给写死了。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TesseractOcrConfig</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Tesseract <span class="title function_">tesseract</span><span class="params">()</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">Tesseract</span> <span class="variable">tesseract</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Tesseract</span>();</span><br><span class="line">        <span class="comment">// 设置训练数据文件夹路径</span></span><br><span class="line">        <span class="comment">//        tesseract.setDatapath(&quot;src/main/resources/tessdata&quot;);</span></span><br><span class="line">        tesseract.setDatapath(<span class="string">&quot;D:\\snail\\tessdata&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> tesseract;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>识别代码：主要就是把需要进行识别的图片作为文件调用API进行识别就可以了，识别的效果不一定完全正确，这里以识别验证码为例。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取验证码</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">private</span> String <span class="title function_">getVerificationCode</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">res</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">imageUrl</span> <span class="operator">=</span> <span class="string">&quot;一个验证码图片的链接&quot;</span>;</span><br><span class="line">    <span class="type">URL</span> <span class="variable">url</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        url = <span class="keyword">new</span> <span class="title class_">URL</span>(imageUrl);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (MalformedURLException e) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;获取验证码图片失败！&#123;&#125;&quot;</span>, e.getMessage());</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="type">InputStream</span> <span class="variable">in</span> <span class="operator">=</span> url.openStream();</span><br><span class="line">        Files.copy(in, Paths.get(<span class="string">&quot;downloaded.jpg&quot;</span>), StandardCopyOption.REPLACE_EXISTING);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;验证码图片存储失败！&#123;&#125;&quot;</span>, e.getMessage());</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">File</span> <span class="variable">imageFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;downloaded.jpg&quot;</span>);</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        res = tesseract.doOCR(imageFile);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (TesseractException e) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;解析验证码图片内容失败！&#123;&#125;&quot;</span>, e.getMessage());</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (res.isEmpty()) &#123;</span><br><span class="line">        log.error(<span class="string">&quot;解析验证码图片内容失败！&quot;</span>);</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;解析验证码图片内容失败!&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> res.trim();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2025/png/32676048/1748356757229-ed05aa19-a33d-40d2-a820-d32639b6b718.png"></p>
+<p>输出 3620</p>
+]]></content>
+      <categories>
+        <category>后端</category>
+      </categories>
+      <tags>
+        <tag>SpringBoot</tag>
+      </tags>
+  </entry>
 </search>
